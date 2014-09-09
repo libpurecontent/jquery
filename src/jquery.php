@@ -15,7 +15,7 @@ class jQuery
 	{
 		# Load the jQuery JS if not already loaded
 		if (!$jQueryLoaded) {
-			$this->html .= "\n\n\n" . '<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>';
+			$this->html .= "\n\n\n" . '<script type="text/javascript" src="//code.jquery.com/jquery.min.js"></script>';
 		}
 		
 		# Register the username and AJAX target
@@ -189,7 +189,7 @@ class jQuery
 	
 	
 	# Dynamic tabs; note that the label ordering is the ordering used for both labels and panes
-	public function tabs ($labels, $panes, $switchToTabNumber = 0, $fixedHtml = false, $class = false)
+	public function tabs ($labels, $panes, $switchToTabNumber = 0, $fixedHtml = false, $class = false, $tabsClass = 'tabs')
 	{
 		# Define the base name
 		$basename = 'switchabletabs';
@@ -213,7 +213,7 @@ class jQuery
 		
 		# Create the tabs
 		$html  = '
-			<ul id="' . $basename . '" class="tabs">' . $tabsHtml . "\n\t" . '</ul>
+			<ul id="' . $basename . '" class="' . $tabsClass . '">' . $tabsHtml . "\n\t" . '</ul>
 			' . $fixedHtml .	/* HTML which is placed between the tabs themselves and the content panes */
 			"\n" . '<div id="' . $basename . '-content"' . ($class ? " class=\"{$class}\"" : '') . '>
 			' . $panelsHtml . '
