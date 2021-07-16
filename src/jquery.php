@@ -91,8 +91,21 @@ class jQuery
 		<script type="text/javascript" src="/sitetech/jquery/expand.js"></script>
 		<script type="text/javascript">
 			$(function() {' . "
-				$('#content {$headingTag}.expand').toggler(" . ($saveState ? "{ajaxTarget: '{$this->ajaxTarget}', username: '" . htmlspecialchars ($this->username) . "'}" : '{ajaxTarget: false}') . ");
-				" . ($expandAll ? "$('#content div.expandable').expandAll({trigger: '{$headingTag}.expand', ref: '{$headingTag}.expand'});" : '') . '
+				
+				// Toggler
+				$('#content {$headingTag}.expand').toggler ();
+				" . ($expandAll ? "$('#content div.expandable').expandAll ({trigger: '{$headingTag}.expand'});" : '') .
+				
+				($saveState ? "
+				// State saving
+				$('div.expandable {$headingTag}.expand').click (function () {
+					var ids = [];
+					$('div.expandable {$headingTag}.expand a.open').parent ('{$headingTag}').each (function () {
+						ids.push (this.id);
+					});
+					$.post ('{$this->ajaxTarget}', {username: '" . htmlspecialchars ($this->username) . "', state: ids.join (',')});
+				});
+				" : '') . '
 			});
 		</script>
 		';
