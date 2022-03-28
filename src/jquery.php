@@ -118,7 +118,8 @@ class jQuery
 		# End if no data posted
 		$username = (isSet ($_POST['username']) ? $_POST['username'] : false);
 		$state = (isSet ($_POST['state']) ? $_POST['state'] : false);
-		if (!strlen ($username) || !strlen ($state)) {return false;}
+		#if (!strlen ($username) || !strlen ($state)) {return false;}
+		if ($state === false) {return false;}	// State could be an empty string '' so this checks against explicit false
 		
 		# Check security
 		if ($username != $this->username) {return false;}
