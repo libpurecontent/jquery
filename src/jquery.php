@@ -139,7 +139,6 @@ class jQuery
 		#!# Ideally this would split the text into the data structure used by self::expandable() but this turns out to be quite hard to do reliably in HTML
 		
 		# Add the expand class to each tag
-		require_once ('application.php');
 		$html = application::addClassesToTags ($html, $tag, 'expand');
 		
 		# Add the divs around each block between the specified tag
